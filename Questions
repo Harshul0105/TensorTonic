@@ -10,3 +10,25 @@ def dot_product(x, y):
         result += x[i] * y[i]
 
     return result
+
+Question 2: Implement Cosine Similarity
+
+import numpy as np
+import math
+
+def cosine_similarity(a, b):
+    
+    dot_product = sum(x * y for x, y in zip(a, b))
+    
+    norm_a = math.sqrt(sum(x * x for x in a))
+    norm_b = math.sqrt(sum(y * y for y in b))
+    
+    if norm_a == 0 or norm_b == 0:
+        return 0.0
+    
+    return dot_product / (norm_a * norm_b)
+
+a = [1, 2, 3]
+b = [4, 5, 6]
+
+print(cosine_similarity(a, b))
