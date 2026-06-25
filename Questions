@@ -73,3 +73,10 @@ def binning(values, num_bins):
     return result
 
 print(cosine_similarity(a, b))
+
+Question 5: Gradient Descent for a 1D Quadratic
+def gradient_descent_quadratic(a, b, c, x, learning_rate, num_iterations):
+    for _ in range(num_iterations):
+        gradient = 2 * a * x + b
+        x = x - learning_rate * gradient
+    return x
