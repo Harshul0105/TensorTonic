@@ -80,3 +80,37 @@ def gradient_descent_quadratic(a, b, c, x, learning_rate, num_iterations):
         gradient = 2 * a * x + b
         x = x - learning_rate * gradient
     return x
+
+question 6: Impute Missing Values
+import numpy as np
+
+def impute_missing(X, strategy):
+    X = np.asarray(X, dtype=float).copy()
+
+    #For 1D array
+    if X.ndim == 1:
+        if strategy == "mean":
+            fill = np.nanmean(X)
+        else:
+            fill = np.nanmedian(X)
+
+        if np.isnan(fill):
+            fill = 0.0
+
+        X[np.isnan(X)] = fill
+        return X
+
+    #For 2D array
+    for j in range(X.shape[1]):
+        if strategy == "mean":
+            fill = np.nanmean(X[:, j])
+        else:
+            fill = np.nanmedian(X[:, j])
+
+        # Entire column is NaN
+        if np.isnan(fill):
+            fill = 0.0
+
+        X[np.isnan(X[:, j]), j] = fill
+
+    return X
